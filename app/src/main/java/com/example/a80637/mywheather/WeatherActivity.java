@@ -1,5 +1,6 @@
 package com.example.a80637.mywheather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -36,6 +38,7 @@ public class WeatherActivity extends AppCompatActivity {
     private TextView comfortText;
     private TextView carWashText;
     private TextView sportText;
+    private Button backList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,7 @@ public class WeatherActivity extends AppCompatActivity {
         comfortText = (TextView)findViewById(R.id.comfort_text);
         carWashText = (TextView)findViewById(R.id.car_wash_text);
         sportText = (TextView)findViewById(R.id.sport_text);
+        backList = (Button)findViewById(R.id.back_list);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String weatherString = prefs.getString("weather", null);
         if (weatherString != null){
@@ -65,6 +69,14 @@ public class WeatherActivity extends AppCompatActivity {
             weatherLayout.setVisibility(View.INVISIBLE);
             requestWeather(weatherId);
         }
+        backList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WeatherActivity.this, MainActivity.class);
+                intent.putExtra("reChoose", "1");
+                startActivity(intent);
+            }
+        });
     }
 
     /**
