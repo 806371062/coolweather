@@ -131,8 +131,8 @@ public class WeatherActivity extends AppCompatActivity {
             TextView minText = (TextView)view.findViewById(R.id.min_text);
             dateText.setText(forecast.date);
             infoText.setText(forecast.more.info);
-            maxText.setText(forecast.temperature.max);
-            minText.setText(forecast.temperature.min);
+            maxText.setText("最高：" + forecast.temperature.max + "℃");
+            minText.setText("最低：" + forecast.temperature.min + "℃");
             forecastLayout.addView(view);
         }
         if(weather.aqi != null){
