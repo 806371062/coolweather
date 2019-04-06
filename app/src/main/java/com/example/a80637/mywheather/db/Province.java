@@ -20,7 +20,7 @@ public class Province extends DataSupport {
         this.id = id;
     }
 
-    public String getProvince(){
+    public String getProvinceName(){
         return provinceName;
     }
 

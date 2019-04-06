@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.a80637.mywheather">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name="com.example.a80637.mywheather.MyApplication"
         android:allowBackup="true"
