@@ -1,4 +1,4 @@
-package com.example.a80637.mywheather.util;
+package com.example.a80637.mywheather;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -21,6 +21,8 @@ import com.example.a80637.mywheather.WeatherActivity;
 import com.example.a80637.mywheather.db.City;
 import com.example.a80637.mywheather.db.County;
 import com.example.a80637.mywheather.db.Province;
+import com.example.a80637.mywheather.util.HttpUtil;
+import com.example.a80637.mywheather.util.Utility;
 
 import org.litepal.crud.DataSupport;
 
@@ -101,10 +103,18 @@ public class ChooseAreaFragment extends Fragment {
                     queryCounties();
                 }else if (currrentLevel == LEVEL_COUNTY){
                     String weatherId = countyList.get(position).getWeatherId();
-                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
-                    intent.putExtra("weather_id", weatherId);
-                    startActivity(intent);
-                    getActivity().finish();
+                    if (getActivity() instanceof MainActivity){
+                        Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                        intent.putExtra("weather_id", weatherId);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }else if (getActivity() instanceof WeatherActivity){
+                        WeatherActivity activity = (WeatherActivity) getActivity();
+                        activity.drawerLayout.closeDrawers();
+                        activity.swipeRefresh.setRefreshing(true);
+                        activity.requestWeather(weatherId);
+                    }
+
                 }
             }
         });
