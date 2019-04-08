@@ -7,9 +7,6 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.a80637.mywheather.util.LogUtil;
-import com.example.a80637.mywheather.util.Utility;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
